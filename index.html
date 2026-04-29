@@ -726,6 +726,16 @@ textarea { min-height: 140px; resize: vertical; }
 <script id="data" type="application/json">[{"title":"Economics in One Lesson","author":"Henry Hazlitt","year":"1946","quotes":[]},{"title":"A Conflict of Visions","author":"Thomas Sowell","year":"2007","quotes":[]},{"title":"Blackout","author":"Candace Owens","year":"2020","quotes":[]},{"title":"The Real Crash","author":"Peter Schiff","year":"2012","quotes":[]},{"title":"Warren Buffett and the Interpretation of Financial Statements","author":"Mary Buffett & David Clark","year":"2008","quotes":[]},{"title":"The Essays of Warren Buffett","author":"Warren Buffet","year":"1997","quotes":[]},{"title":"The Dhandho Investor","author":"Mohnish Pabrai","year":"2007","quotes":[]},{"title":"100 Baggers","author":"Christopher Mayer","year":"2015","quotes":[]},{"title":"Richer, Wiser, Happier","author":"William Green","year":"2021","quotes":[]},{"title":"One Up on Wall Street","author":"Peter Lynch","year":"1989","quotes":[]},{"title":"The Joys of Compounding","author":"Gautam Baid","year":"2020","quotes":[]},{"title":"You Can Be a Stock Market Genius","author":"Joel Greenblatt","year":"1997","quotes":[]},{"title":"The Most Important Thing","author":"Howard Marks","year":"2011","quotes":[]},{"title":"Mere Christianity","author":"C.S. Lewis","year":"1952","quotes":[]},{"title":"Grover Cleveland","author":"Henry Graff","year":"2002","quotes":[]},{"title":"Basic Economics","author":"Thomas Sowell","year":"2004","quotes":[]},{"title":"The Case for Faith","author":"Lee Strobel","year":"2000","quotes":[]},{"title":"Civil Rights: Rhetoric or Reality?","author":"Thomas Sowell","year":"1984","quotes":[]},{"title":"Freakonomics","author":"Steven Levitt & Stephen Dubner","year":"2005","quotes":[]},{"title":"Intellectuals and Society","author":"Thomas Sowell","year":"2009","quotes":[]},{"title":"Meditations","author":"Marcus Aurelius","year":"","quotes":[]},{"title":"Antifragile","author":"Nassim Taleb","year":"2012","quotes":[]},{"title":"12 Rules for Life","author":"Jordan Peterson","year":"2018","quotes":[]},{"title":"How to Win Friends and Influence People","author":"Dale Carnegie","year":"1936","quotes":[]},{"title":"Why Nations Fail","author":"Daron Acemoglu and James Robinson","year":"2012","quotes":[]},{"title":"We Who Wrestle with God","author":"Jordan Peterson","year":"2024","quotes":[]},{"title":"Trust the Plan","author":"Greg Spira","year":"2023","quotes":[]},{"title":"Future Ready","author":"Steve Morlidge & Steve Player","year":"2012","quotes":[]},{"title":"The Advantage","author":"Patrick Lencioni","year":"2012","quotes":[]},{"title":"The 5 Types of Wealth","author":"Sahil Bloom","year":"2025","quotes":[]},{"title":"Poor Charlie’s Almanack","author":"Charlie Munger","year":"2023","quotes":[]}]</script>
 
 <script>
+// ─── Storage shim (no-op when not running inside Claude artifact env) ───────
+if (!window.storage || typeof window.storage.get !== 'function') {
+    window.storage = {
+        get: async () => null,
+        set: async () => null,
+        delete: async () => null,
+        list: async () => ({ keys: [] })
+    };
+}
+
 // ─── State ───────────────────────────────────────────────
 const baseBooks = JSON.parse(document.getElementById('data').textContent);
 let customQuotes = [];
