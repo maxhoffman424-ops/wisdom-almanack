@@ -4182,7 +4182,10 @@ async function preloadJournalIfNeeded() {
     }
 }
 
-preloadQuotesIfNeeded().then(() => preloadJournalIfNeeded()).then(() => loadStorage()).then(() => loadJournal()).then(() => initializePSD()).then(() => showView('daily'));
+preloadQuotesIfNeeded().then(() => preloadJournalIfNeeded()).then(() => loadStorage()).then(() => loadJournal()).then(() => initializePSD()).then(() => {
+    // Final fallback: if storage unavailable (GitHub Pages), seed from bundled data
+    if (stockJournal.length <= 1 && bundled2.length > 1) stockJournal = [...bundled2];
+}).then(() => showView('daily'));
 
 // ─── AI Framework Scorecard ────────────────────────────────────────────
 async function loadAiScorecard(stockId, ticker, name, stockIdOrLog, forceRefresh) {
